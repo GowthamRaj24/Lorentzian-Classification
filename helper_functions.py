@@ -1,8 +1,10 @@
 import math 
-import talib
+# import ta
+import pandas_ta as ta
 
 def series_from(feature_string, _close, _high, _low, _hlc3, f_paramA, f_paramB):
     if feature_string == "RSI":
+        return ta.momentum.RSIIndicator(close=_close)
         return ml.n_rsi(_close, f_paramA, f_paramB)
     elif feature_string == "WT":
         return ml.n_wt(_hlc3, f_paramA, f_paramB)

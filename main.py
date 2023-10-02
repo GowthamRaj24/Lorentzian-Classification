@@ -2,11 +2,11 @@ import math
 import numpy as np
 
 from classes import Settings, Label,FeatureArrays,FeatureSeries,FilterSettings,Filter,MLModel,FeatureSettings
-
+from helper_functions import series_from
 # Helper Functions
 
 settings = Settings(
-    input.source(title='Source', defval=close, group="General Settings", tooltip="Source of the input data"),
+    input.source(title='Source', defval="close", group="General Settings", tooltip="Source of the input data"),
     input.int(title='Neighbors Count', defval=8, group="General Settings", minval=1, maxval=100, step=1, tooltip="Number of neighbors to consider"),
     input.int(title="Max Bars Back", defval=2000, group="General Settings"),
     input.int(title="Feature Count", defval=5, group="Feature Engineering", minval=2, maxval=5, tooltip="Number of features to use for ML predictions."),

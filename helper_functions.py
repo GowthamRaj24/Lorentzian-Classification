@@ -12,21 +12,10 @@ def series_from(feature_string, _close, _high, _low, _hlc3, f_paramA, f_paramB):
         return ml.n_adx(_high, _low, _close, f_paramA)
 
 def get_lorentzian_distance(i, featureCount, featureSeries, featureArrays):
-    if featureCount == 5:
-        return (math.log(1 + abs(featureSeries.f1 - featureArrays.f1[i])) +
-                math.log(1 + abs(featureSeries.f2 - featureArrays.f2[i])) +
-                math.log(1 + abs(featureSeries.f3 - featureArrays.f3[i])) +
-                math.log(1 + abs(featureSeries.f4 - featureArrays.f4[i])) +
-                math.log(1 + abs(featureSeries.f5 - featureArrays.f5[i])))
-    elif featureCount == 4:
-        return (math.log(1 + abs(featureSeries.f1 - featureArrays.f1[i])) +
-                math.log(1 + abs(featureSeries.f2 - featureArrays.f2[i])) +
-                math.log(1 + abs(featureSeries.f3 - featureArrays.f3[i])) +
-                math.log(1 + abs(featureSeries.f4 - featureArrays.f4[i])))
-    elif featureCount == 3:
-        return (math.log(1 + abs(featureSeries.f1 - featureArrays.f1[i])) +
-                math.log(1 + abs(featureSeries.f2 - featureArrays.f2[i])) +
-                math.log(1 + abs(featureSeries.f3 - featureArrays.f3[i])))
-    elif featureCount == 2:
-        return (math.log(1 + abs(featureSeries.f1 - featureArrays.f1[i])) +
-                math.log(1 + abs(featureSeries.f2 - featureArrays.f2[i])))
+    distance = 0
+    
+    for j in range(1, featureCount + 1):
+        diff = featureSeries['f{}'.format(j)] - featureArrays['f{}'.format(j)][i]
+        distance += math.log(1 + abs(diff))
+    
+    return distance

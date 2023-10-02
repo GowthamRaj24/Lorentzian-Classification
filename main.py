@@ -2,7 +2,7 @@ import math
 import numpy as np
 
 from classes import Settings, Label,FeatureArrays,FeatureSeries,FilterSettings,Filter,MLModel,FeatureSettings
-from helper_functions import series_from
+from helper_functions import series_from, get_lorentzian_distance
 # Helper Functions
 
 settings = Settings(
